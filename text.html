@@ -17,17 +17,22 @@
             xmlHttp.open("GET", theUrl, true); // true for asynchronous 
             xmlHttp.send(null);
         }
+        Array.prototype.random = function () {
+            return this[Math.floor((Math.random()*this.length))];
+        }
         //mine
         window.onload = () => {
 
             random.onclick = e => {
                 httpGetAsync("textmsgs.txt", response => {
-                    console.log(response);
+                    output.innerText = response.split("\n").random();
                 });
             }
 
             todays.onclick = e => {
-                
+                httpGetAsync("textmsgs.txt", response => {
+                    output.innerText = response.split("\n").pop();
+                });
             }
         }
     </script>
