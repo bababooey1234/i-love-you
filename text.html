@@ -5,8 +5,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Text Messages</title>
+    <script>
+        //stolen
+        function httpGetAsync(theUrl, callback)
+        {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function() { 
+                if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                    callback(xmlHttp.responseText);
+            }
+            xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+            xmlHttp.send(null);
+        }
+        //mine
+        window.onload = () => {
+
+            random.onclick = e => {
+                httpGetAsync("textmsgs.txt", response => {
+                    console.log(response);
+                });
+            }
+
+            todays.onclick = e => {
+                
+            }
+        }
+    </script>
+    <style>
+        div {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        body {
+            margin: 0;
+        }
+        button {
+            height: 20vh;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-    
+    <div>
+        <section>
+            <button id="random">Get random message</button>
+        </section>
+        <section>
+            <button id="todays">Get most recent message</button>
+        </section>
+    </div>
+    <p id="output">Click one of the buttons for a message :)</p>
 </body>
 </html>
