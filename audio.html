@@ -4,9 +4,57 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Audio Messages</title>
+    <title>Text Messages</title>
+    <script>
+        //stolen
+        function httpGetAsync(theUrl, callback)
+        {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function() { 
+                if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                    callback(xmlHttp.responseText);
+            }
+            xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+            xmlHttp.send(null);
+        }
+        //mine
+        window.onload = () => {
+
+            function pre(e) {
+                console.log("pre");
+                
+            }
+            preclick.onclick = pre;
+
+            function post(e) {
+                console.log("post");
+            }
+            postclick.onclick = post;
+        }
+    </script>
+    <style>
+        div {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        body {
+            margin: 0;
+        }
+        button {
+            height: 20vh;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-    
+    <div>
+        <section>
+            <button id="preclick">Pre-voice training</button>
+        </section>
+        <section>
+            <button id="postclick">Post-voice training</button>
+        </section>
+    </div>
+    <p id="output">Click button for random message :)</p>
 </body>
 </html>
