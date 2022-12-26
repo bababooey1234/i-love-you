@@ -27,7 +27,7 @@
                 httpGetAsync("audiosindex.txt", response => {
                     let filename = response.split("\n").random();
                     output.src = "audio/"+filename;
-                    output.play();
+                    setTimeout(output.play, 300);
                 });
             }
 
@@ -35,7 +35,7 @@
                 httpGetAsync("audiosindex.txt", response => {
                     let filename = response.split("\n").pop();
                     output.src = "audio/"+filename;
-                    output.play();
+                    setTimeout(output.play, 300);
                 });
             }
         }
