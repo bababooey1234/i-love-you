@@ -17,19 +17,27 @@
             xmlHttp.open("GET", theUrl, true); // true for asynchronous 
             xmlHttp.send(null);
         }
+        Array.prototype.random = function () {
+            return this[Math.floor((Math.random()*this.length))];
+        }
         //mine
         window.onload = () => {
 
-            function pre(e) {
-                console.log("pre");
-                
+            random.onclick = e => {
+                httpGetAsync("audiosindex.txt", response => {
+                    let filename = response.split("\n").random();
+                    output.src = "audio/"+filename;
+                    output.play();
+                });
             }
-            preclick.onclick = pre;
 
-            function post(e) {
-                console.log("post");
+            todays.onclick = e => {
+                httpGetAsync("audiosindex.txt", response => {
+                    let filename = response.split("\n").pop();
+                    output.src = "audio/"+filename;
+                    output.play();
+                });
             }
-            postclick.onclick = post;
         }
     </script>
     <style>
@@ -49,12 +57,13 @@
 <body>
     <div>
         <section>
-            <button id="preclick">Pre-voice training</button>
+            <button id="random">Get random message</button>
         </section>
         <section>
-            <button id="postclick">Post-voice training</button>
+            <button id="todays">Get most recent message</button>
         </section>
     </div>
-    <p id="output">Click button for random message :)</p>
+    <p>Click one of the buttons for a message (audio version!) :)</p>
+    <audio controls id="output"></audio>
 </body>
 </html>
