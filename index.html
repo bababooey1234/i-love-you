@@ -5,14 +5,54 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>I Love You :)</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            width: 100%;
+        }
+
+        button {
+            width: 100%;
+            height: 100%;
+        }
+
+        h1 {
+            font-size: 5vh;
+            text-align: center;
+        }
+        
+        #gridouter {
+            display: grid;
+            width: 100%;
+            height: 100%;
+            grid-template-rows: 0.1fr 1fr;
+        }
+        
+        #gridinner {
+            display: grid;
+        }
+
+        @media (min-aspect-ratio: 1/1) {
+            #gridinner {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+        @media (max-aspect-ratio: 1/1) {
+            #gridinner {
+                grid-template-rows: 1fr 1fr 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>I love you more than anything :)</h1>
-    <div>
-        <section><button onclick="location.href='text'">Text</button></section>
+    <div id="gridouter">
+        <h1>I love you more than anything :)</h1>
+        <div id="gridinner">
+            <section><button onclick="location.href='text'">Text</button></section>
         <section><button onclick="location.href='audio'">Audio</button></section>
         <section><button onclick="location.href='video'">Video</button></section>
+        </div>
     </div>
 </body>
 </html>
