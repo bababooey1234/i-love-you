@@ -5,8 +5,65 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Messages</title>
+    <script>
+        //stolen
+        function httpGetAsync(theUrl, callback)
+        {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function() { 
+                if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                    callback(xmlHttp.responseText);
+            }
+            xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+            xmlHttp.send(null);
+        }
+        Array.prototype.random = function () {
+            return this[Math.floor((Math.random()*this.length))];
+        }
+        //mine
+        window.onload = () => {
+
+            random.onclick = e => {
+                httpGetAsync("videosindex.txt", response => {
+                    let filename = response.split("\n").random();
+                    output.src = "video/"+filename;
+                    setTimeout(_=>output.play(), 300);
+                });
+            }
+
+            todays.onclick = e => {
+                httpGetAsync("videosindex.txt", response => {
+                    let filename = response.split("\n").pop();
+                    output.src = "video/"+filename;
+                    setTimeout(_=>output.play(), 300);
+                });
+            }
+        }
+    </script>
+    <style>
+        div {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        body {
+            margin: 0;
+        }
+        button {
+            height: 20vh;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-    
+    <div>
+        <section>
+            <button id="random">Get random message</button>
+        </section>
+        <section>
+            <button id="todays">Get most recent message</button>
+        </section>
+    </div>
+    <p>Click one of the buttons for a message (video version!) :)</p>
+    <video controls id="output"></audio>
 </body>
 </html>
